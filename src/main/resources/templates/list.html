@@ -3,16 +3,41 @@
 <head th:replace="layout :: head"></head>
 
 <body>
-	<nav th:replace="layout :: header"></nav>	
-	<div class="bodykit row" style="margin:0">
-	<div th:replace="layout :: sidebar"></div>
-		<div class="container main-content list col-10 content" id="main-content">
-		
-			<div class="option1 row">
-			
+	<nav th:replace="layout :: header"></nav>
+	<div class="bodykit row" style="margin: 0">
+		<div th:replace="layout :: sidebar"></div>
+		<div class="container main-content list col-10 content"
+			id="main-content">
+<form class="option1" action="#" th:action="@{/contact/search}" method="get">
+<div class=" row">
+				<div class="col-4" style="margin: auto">
+					<div class="search-index">Tên</div>
+					<input class="form-control mr-sm-2" type="search" 
+						placeholder="Search by tên ..." />
+				</div>
+
+				<div class="col-4" style="margin: auto">
+					<div class="search-index">Email</div>
+					<div class="search-index">
+						<input class="form-control mr-sm-2" type="search" name="email"
+							placeholder="Search by email ..." />
+					</div>
+				</div>
+				<div class="col-4" style="margin: auto">
+					<div class="search-index">Số điện thoại</div>
+					<input class="form-control mr-sm-2" type="search" 
+						placeholder="Search by sdt ..." />
+				</div>
 			</div>
-		
-	
+			<div style="margin-top:10px">
+			<button class="btn btn-primary" type="submit">
+						<i class="fa fa-search"></i> Search
+					</button>
+			</div>
+</form>
+			
+
+
 			<div class="row mt-4">
 				<div th:if="${successMessage}"
 					class="col-12 alert alert-success alert-dismissible fade show"
@@ -61,8 +86,8 @@
 						</tbody>
 					</table>
 				</div>
-
-				<ul class="pagination">
+<div class="paging">
+				<ul class="pagination" style="right:0;margin:auto">
 					<li
 						th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
 						<a class="page-link" th:href="@{/}">First</a>
@@ -103,8 +128,10 @@
 						<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
 					</li>
 				</ul>
+
+</div>
 			</th:block>
-		</div>		
+		</div>
 	</div>
 </body>
 </html>
