@@ -8,11 +8,11 @@
 		<div th:replace="layout :: sidebar"></div>
 		<div class="container main-content list col-10 content"
 			id="main-content">
-<form class="option1" action="#" th:action="@{/contact/search}" method="get">
+<form class="option1" action="#" th:action="@{/list/page/}" method="get">
 <div class=" row">
 				<div class="col-4" style="margin: auto">
 					<div class="search-index">Tên</div>
-					<input class="form-control mr-sm-2" type="search" 
+					<input class="form-control mr-sm-2" type="search" name="ten" th:value="${ten}"
 						placeholder="Search by tên ..." />
 				</div>
 
@@ -25,7 +25,7 @@
 				</div>
 				<div class="col-4" style="margin: auto">
 					<div class="search-index">Số điện thoại</div>
-					<input class="form-control mr-sm-2" type="search" 
+					<input class="form-control mr-sm-2" type="search" name="sdt"
 						placeholder="Search by sdt ..." />
 				</div>
 			</div>
@@ -50,11 +50,11 @@
 				</div>
 			</div>
 
-			<th:block th:if="${#lists.isEmpty(employees.pageList)}">
+			<th:block th:if="${#lists.isEmpty(employees)}">
 				<h3>No employee</h3>
 			</th:block>
 
-			<th:block th:unless="${#lists.isEmpty(employees.pageList)}">
+			<th:block th:unless="${#lists.isEmpty(employees)}">
 				<h5>List of contacts</h5>
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover">
@@ -70,7 +70,7 @@
 						<tbody>
 
 
-							<tr th:each="contact,iterStat : ${employees.pageList}">
+							<tr th:each="contact,iterStat : ${employees}">
 								<td th:text="${iterStat.count}"></td>
 								<td th:text="${contact.name}"></td>
 								<td th:text="${contact.email}"></td>

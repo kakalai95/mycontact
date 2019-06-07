@@ -1,12 +1,16 @@
 package org.ashina.mycontact.service;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.ashina.mycontact.entity.Contact;
 import org.ashina.mycontact.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.List;
 
 @Service
 public class ContactServiceImpl implements ContactService {
@@ -20,8 +24,10 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public List<Contact> search(String term) {
-		return contactRepository.findByNameContaining(term);
+	public Page<Contact> search(String term, String email, String sdt, int page, int size) {
+		Sort.Order order = new Sort.Order( Direction.ASC , "name").ignoreCase();
+		return contactRepository.getAndPaging(term, email, sdt, new PageRequest(page, size, new Sort(order)));
+		
 	}
 
 	@Override

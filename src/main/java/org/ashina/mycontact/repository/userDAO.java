@@ -1,4 +1,4 @@
-package org.ashina.mycontact.DAO;
+package org.ashina.mycontact.repository;
 
 import org.springframework.stereotype.Repository;
 
