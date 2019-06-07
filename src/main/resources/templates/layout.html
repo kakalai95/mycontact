@@ -3,79 +3,66 @@
 <head th:fragment="head">
 <!-- Required meta tags -->
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <title>MyContact App</title>
 <link href="../static/images/logo.jpg" th:href="@{/images/logo.jpg}"
-
 	rel="shortcut icon" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<!-- Bootstrap CSS -->
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous" />
-<!-- Font Awesome -->
-<link
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet"
-	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-	crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 <!-- Custom style -->
 <link href="../static/css/style.css" th:href="@{/css/style.css}"
 	rel="stylesheet" />
-	
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-	<nav th:fragment="header" class="navbar navbar-dark bg-dark ">
-		<a class="navbar-brand" href="/">MyContact App</a>
-		
-		<form style="left:0; color: white;">
-		 Hello <span sec:authentication="name"></span>
-		</form>		   
-    		<div action="#" class="info">
-    		
-    		
-    		</div>
-    		
-		<form action="#" th:action="@{/logout}" method="POST">
-			<button class="btn btn-primary" type="submit">
-				<i class="fa fa-sign-out"></i>Logout
-			</button>
+	<div th:fragment="header" class="header1 row " style="margin: 0px">
+
+
+		<div class="col-2 mycontact">
+			<a style="color: white" class="nav-link" href="/">MyContact App</a>
+		</div>
+
+		<form class="form-info">
+			<div action="#" class="avatar"></div>
+			<div class="dropdown" style="margin:auto">
+				<button type="button" class="btn  dropdown-toggle"
+					data-toggle="dropdown">
+					<span sec:authentication="name"></span>
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="/">List</a>
+					<a class="dropdown-item" href="/contact/add">Add New Contact</a>
+					<a class="dropdown-item" href="https://www.facebook.com/kakalai1995">About us</a>
+					<a class="dropdown-item" href="/logout" method="POST">Logout</a>
+				</div>
+			</div>
 		</form>
-		
-	</nav>
 
-<div th:fragment="sidebar" class="sidebar">
-  <a href="#home"><i class="fa fa-fw fa-home"></i> Home</a>
-  <a href="#services"><i class="fa fa-fw fa-wrench"></i> Services</a>
-  <a href="#clients"><i class="fa fa-fw fa-user"></i> Clients</a>
-  <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-</div>
+	</div>
 
 
-	
+	<div th:fragment="sidebar" class="sidebar col-2">
+		<a href="#home"><i class="fa fa-fw fa-home"></i> Home</a> <a
+			href="#services"><i class="fa fa-fw fa-wrench"></i> Services</a> <a
+			href="#clients"><i class="fa fa-fw fa-user"></i> Clients</a> <a
+			href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+	</div>
 
-	<footer th:fragment="footer" class="container" style="bottom: 0px;">
-		<strong>&copy; 2018 Kakalai</strong>
-	</footer>
+
 
 </body>
 </html>

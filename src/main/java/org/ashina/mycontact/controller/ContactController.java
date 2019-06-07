@@ -53,7 +53,7 @@ public class ContactController {
 	public String showEmployeePage(HttpServletRequest request, 
 			@PathVariable int pageNumber, Model model) {
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("employeelist");
-		int pagesize = 1;
+		int pagesize = 5;
 		List<Contact> list =(List<Contact>) contactService.findAll();
 		System.out.println(list.size());
 		if (pages == null) {
