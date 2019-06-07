@@ -4,7 +4,7 @@
 
 <body>
 	<nav th:replace="layout :: header"></nav>
-
+<div th:replace="layout :: sidebar"></div>
 	<div class="container" id="main-content">
 		<div class="row d-flex justify-content-center">
 			<form style="min-width: 300px;" action="#" th:action="@{/contact/save}" th:object="${contact}" method="post"

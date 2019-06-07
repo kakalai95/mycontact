@@ -15,5 +15,6 @@ public interface ContactService {
     void save(Contact contact);
 
     void delete(Integer id);
+    int totalPage();
 
 }

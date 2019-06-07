@@ -34,7 +34,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admin").hasRole("ADMIN").and().formLogin().loginPage("/login").usernameParameter("email")
 				.passwordParameter("password").defaultSuccessUrl("/").failureUrl("/login?error").and()
 				.exceptionHandling().accessDeniedPage("/403").and().logout().deleteCookies("JSESSIONID")
-
 				.and().rememberMe().key("uniqueAndSecret");
 
 	}

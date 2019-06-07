@@ -4,8 +4,8 @@
 
 <body>
 	<nav th:replace="layout :: header"></nav>
-
-	<div class="container" id="main-content">
+	<div th:replace="layout :: sidebar"></div>
+	<!--  <div class="container" id="main-content">
 		<div class="row">
 			<div class="col-6 no-padding">
 				<form class="form-inline" action="#" th:action="@{/contact/search}" method="get">
@@ -65,12 +65,142 @@
 						</tr>
 						</tbody>
 					</table>
+					
+					
+					
 				</div>
 			</th:block>
 		</div>
-	</div><!-- /.container -->
+		 -->
+
+	<div class="container main-content list" id="main-content">
+		<div class="row">
+			<div class="col-6 no-padding">
+				<form class="form-inline" action="#" th:action="@{/contact/search}"
+					method="get">					
+					 <input class="form-control mr-sm-2" type="search" name="term"
+						placeholder="Search by name ..." /> 															
+					<button class="btn btn-primary" type="submit">
+						<i class="fa fa-search"></i> Search
+					</button>
+				</form>
+			
+			</div>
+
+			<div class="col-6 no-padding">
+				<a href="#" th:href="@{/contact/add}"
+					class="btn btn-success float-right"> <i
+					class="fa fa-plus-square"></i> New contact
+				</a>
+			</div>
+		</div>
+		<div class="row mt-4">
+			<div th:if="${successMessage}"
+				class="col-12 alert alert-success alert-dismissible fade show"
+				role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+
+		<th:block th:if="${#lists.isEmpty(employees.pageList)}">
+			<h3>No employee</h3>
+		</th:block>
+
+		<th:block th:unless="${#lists.isEmpty(employees.pageList)}">
+			<h5>List of contacts</h5>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Number</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+						<tr th:each="contact,iterStat : ${employees.pageList}">
+							<td th:text="${iterStat.count}"></td>
+							<td th:text="${contact.name}"></td>
+							<td th:text="${contact.email}"></td>
+							<td th:text="${contact.phone}"></td>
+							<td><a href="#"
+								th:href="@{/contact/{id}/edit(id=${contact.id})}"
+								class="mr-sm-2 text-primary"> <i class="fa fa-pencil"></i>
+							</a> <a href="#" th:href="@{/contact/{id}/delete(id=${contact.id})}"
+								class="text-danger"> <i class="fa fa-trash"></i>
+							</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+			<ul class="pagination">
+				<li
+					th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+					<a class="page-link" th:href="@{/}">First</a>
+				</li>
+				<li
+					th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+					<a class="page-link" aria-label="Previous"
+					th:href="@{|${baseUrl}${currentIndex - 1}|}"
+					title='Go to previous page'><span aria-hidden="true">&laquo;</span>
+				</a>
+				</li>
+
+				<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+					th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+					<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+						th:text='${item}'>1</span>
+				</a>
+				</li>
+				<li th:if="${totalPageCount > 6}"><span class="page-link">...</span>
+				<li
+					th:each="item : ${#numbers.sequence(totalPageCount-2,totalPageCount)}"
+					th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+					<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+						th:text='${item}'>1</span>
+				</a>
+				</li>
+				</li>
+
+				<li
+					th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+					<a class="page-link" aria-label="Next"
+					th:href="@{|${baseUrl}${currentIndex + 1}|}"
+					title='Go to next page'><span aria-hidden="true">&raquo;</span>
+				</a>
+				</li>
+				<li
+					th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+					<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+				</li>
+			</ul>
+
+		</th:block>
+
+	</div>
+	<!-- /.container -->
+
+
 
 	<footer th:replace="layout :: footer"></footer>
 
 </body>
 </html>
+
+
+
+
+
+
+
+

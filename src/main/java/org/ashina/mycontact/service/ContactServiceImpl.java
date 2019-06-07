@@ -5,36 +5,51 @@ import org.ashina.mycontact.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
 public class ContactServiceImpl implements ContactService {
 
-    @Autowired
-    private ContactRepository contactRepository;
+	@Autowired
+	private ContactRepository contactRepository;
 
-    @Override
-    public Iterable<Contact> findAll() {
-        return contactRepository.findAll();
-    }
+	@Override
+	public Iterable<Contact> findAll() {
+		return contactRepository.findAll();
+	}
 
-    @Override
-    public List<Contact> search(String term) {
-        return contactRepository.findByNameContaining(term);
-    }
+	@Override
+	public List<Contact> search(String term) {
+		return contactRepository.findByNameContaining(term);
+	}
 
-    @Override
-    public Contact findOne(Integer id) {
-        return contactRepository.findOne(id);
-    }
+	@Override
+	public Contact findOne(Integer id) {
+		return contactRepository.findOne(id);
+	}
 
-    @Override
-    public void save(Contact contact) {
-        contactRepository.save(contact);
-    }
+	@Override
+	public void save(Contact contact) {
+		contactRepository.save(contact);
+	}
 
-    @Override
-    public void delete(Integer id) {
-        contactRepository.delete(id);
-    }
+	@Override
+	public void delete(Integer id) {
+		contactRepository.delete(id);
+	}
+
+	public int totalPage() {
+		Iterable<Contact> contacts = contactRepository.findAll();
+
+		if (contacts instanceof Collection) {
+			return ((Collection<?>) contacts).size();
+		}
+		int counter = 0;
+		for (Object i : contacts) {
+			counter++;			
+		}
+		int x = counter/7+1;
+		return x;
+	}
 }
