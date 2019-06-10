@@ -3,3 +3,6 @@ Simple CRUD app using:
 - Spring MVC 
 - Spring Data JPA 
 - Thymeleaf
+- database là file mycontact.sql
+
+
